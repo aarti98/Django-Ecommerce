@@ -3,6 +3,7 @@ import os
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 from .utils import unique_slug_generator
+from django.urls import reverse
 
 
 def get_filename_ext(filepath):
@@ -35,9 +36,13 @@ class Product(models.Model):
     price       = models.DecimalField(decimal_places=2, max_digits=10, default=39.99)
     image       = models.ImageField(upload_to=upload_image_path, null=True, blank=True)
     featured    = models.BooleanField(default=False)
-
+    timestamp   = models.DateTimeField(auto_now_add=True)
 
     objects = ProductManager()
+
+    def get_absolute_url(self):
+        # return "/products/{slug}/".format(slug=self.slug)
+        return reverse("products:detail", kwargs={"slug":self.slug})
 
     def __str__(self):
         return self.title

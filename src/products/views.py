@@ -9,9 +9,9 @@ class ProductListView(ListView):
     # queryset = Product.objects.all()
     template_name = "product/list.html"
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(ProductListView, self).get_context_data(*args, **kwargs)
-        return context
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super(ProductListView, self).get_context_data(*args, **kwargs)
+    #     return context
 
 
     def get_queryset(self, *args, **kwargs):
@@ -56,7 +56,7 @@ class ProductDetailSlugView(DetailView):
         # instance = get_object_or_404(Product, slug=slug, active= True)
 
         try:
-            instance = Product.objects.get(slug = slug)
+            instance = Product.objects.get(slug=slug)
 
         except Product.DoesNotExist:
             raise Http404("Not found")
