@@ -1,6 +1,6 @@
 {% url 'home' as home_url %}
 {% url 'products:list' as list_url %}
-
+{% url 'cart:home' as cart_url %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3" >
 <div class="container">
@@ -33,24 +33,28 @@
         <a class="nav-link" href="{% url 'register' %}">Register <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item {% if request.path == 'login' %}active{% endif %}">
-        <a class="nav-link" href="{% url 'login' %}"> Login <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'login' %}"> Login</a>
       </li>
     {% endif %}
+
+    <li class="nav-item {% if request.path == 'login' %}active{% endif %}">
+        <a class="nav-link" href="{{ cart_url }}"> Cart {{ request.session.cart_items }}</a>
+      </li>
 
       <li class="nav-item  {% if request.path == list_url %}active{% endif %}">
         <a class="nav-link" href="{% url 'products:list' %}">Products</a>
       </li>
 
 
-      <li class="nav-item dropdown">
-    <a class="nav-link dropdown toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Dropdown Link </a>
-    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="#">Action </a>
-        <a class="dropdown-item" href="#">Another action </a>
-        <a class="dropdown-item" href="#">Something </a>
-    </div>
-      </li>
+{#      <li class="nav-item dropdown">#}
+{#    <a class="nav-link dropdown toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#        Dropdown Link </a>#}
+{#    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">#}
+{#        <a class="dropdown-item" href="#">Action </a>#}
+{#        <a class="dropdown-item" href="#">Another action </a>#}
+{#        <a class="dropdown-item" href="#">Something </a>#}
+{#    </div>#}
+{#      </li>#}
 
     </ul>
       {% include 'search/snippets/search-form.html' %}

@@ -56,7 +56,6 @@ class RegisterForm(forms.Form):
         return username
 
 
-
     def clean(self):
         data = self.cleaned_data
         password = self.cleaned_data.get('password')

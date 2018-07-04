@@ -6,6 +6,7 @@ from .utils import unique_slug_generator
 from django.urls import reverse
 from django.db.models import Q
 
+
 def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
     name,ext  = os.path.splitext(base_name)

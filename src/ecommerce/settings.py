@@ -27,7 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'products',
     'search',
-    'tags'
+    'tags',
+    'carts',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -112,7 +114,6 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static_proj"),
-
 ]
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "static_root")
