@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from products.models import Product
+from billing.models import BillingProfile
 from orders.models import Order
+from accounts.models import GuestEmail
 from .models import Cart
+from accounts.forms import LoginForm, GuestForm
 
 
 def cart_home(request):
-    cart_obj,new_obj = Cart.objects.new_or_get(request)
+    cart_obj, new_obj = Cart.objects.new_or_get(request)
     return render(request, "carts/home.html", {"cart": cart_obj})
 
 
@@ -31,10 +34,24 @@ def cart_update(request):
 
 
 def checkout_home(request):
-    cart_obj,cart_created = Cart.objects.new_or_get(request)
+    cart_obj, cart_created = Cart.objects.new_or_get(request)
+    order_obj=None
 
     if cart_created or cart_obj.products.count() == 0:
         return redirect("cart:home")
-    else:
-        order_obj, new_order_obj = Order.objects.get_or_create(cart=cart_obj)
-    return render(request, "carts/checkout.html", {"object": order_obj})
+
+    login_form = LoginForm()
+    guest_form = GuestForm()
+    billing_profile, billing_profile_created = BillingProfile.objects.new_or_get(request)
+
+    if billing_profile is not None:
+        order_obj, order_obj_created = Order.objects.new_or_get(billing_profile, cart_obj)
+
+    context = {
+        "object": order_obj,
+        "billing_profile": billing_profile,
+        "login_form": login_form,
+        "guest_form":guest_form
+               }
+
+    return render(request, "carts/checkout.html", context)

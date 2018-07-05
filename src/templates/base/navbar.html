@@ -14,7 +14,9 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
     <ul class="navbar-nav mr-auto">
+
       <li class="nav-item {% if request.path == home_url %}active{% endif %}">
         <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
       </li>
@@ -26,7 +28,7 @@
       </li>
 
     {% if request.user.is_authenticated %}
-      <li class="nav-item {% if request.path == 'logout_url' %}active{% endif %}">
+      <li class="nav-item {% if request.path == logout_url %}active{% endif %}">
         <a class="nav-link" href="{{ logout_url }}"> Logout </a>
       </li>
     {% else %}
@@ -38,7 +40,7 @@
       </li>
     {% endif %}
 
-    <li class="nav-item {% if request.path == 'login' %}active{% endif %}">
+    <li class="nav-item {% if request.path == 'cart_url' %}active{% endif %}">
         <a class="nav-link" href="{{ cart_url }}"> Cart {{ request.session.cart_items }}</a>
       </li>
 
