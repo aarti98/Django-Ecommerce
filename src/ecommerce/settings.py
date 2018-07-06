@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'products',
     'search',
     'billing',
+    'addresses',
     'tags',
     'carts',
     'orders',
