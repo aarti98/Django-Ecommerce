@@ -54,7 +54,7 @@ def login_page(request):
                 return redirect("/")
         else:
             # Return an 'invalid login' error message.
-            print("Error")
+            print("Login Error")
 
     return render(request, "accounts/login.html", context)
 

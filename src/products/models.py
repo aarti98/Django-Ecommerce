@@ -35,6 +35,7 @@ class ProductQuerySet(models.query.QuerySet):
 
         return self.filter(lookups).distinct()
 
+
 class ProductManager(models.Manager):
     def featured(self):
         return self.get_queryset().featured()
