@@ -34,10 +34,11 @@ class BillingProfile(models.Model):
     update    = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
+    objects = BillingProfileManager()
+
     def __str__(self):
         return self.email
 
-    objects = BillingProfileManager()
 
 # def billing_profile_created_reciever(sender, instance, created, *args, **kwargs):
 #     if created:
