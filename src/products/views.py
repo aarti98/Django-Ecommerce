@@ -1,8 +1,10 @@
 from django.http import Http404
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, get_object_or_404
+from analytics.mixins import ObjectViewedMixin
 from .models import Product
 from carts.models import Cart
+
 
 class ProductListView(ListView):
     # queryset = Product.objects.all()
@@ -32,7 +34,7 @@ def product_list_view(request):
     return render(request, "product/list.html", context)
 
 
-class ProductDetailView(DetailView):
+class ProductDetailView(ObjectViewedMixin, DetailView):
     # queryset = Product.objects.all()
     template_name = "product/detail.html"
 
@@ -50,7 +52,7 @@ class ProductDetailView(DetailView):
         return instance
 
 
-class ProductDetailSlugView(DetailView):
+class ProductDetailSlugView(ObjectViewedMixin, DetailView):
     queryset = Product.objects.all()
     template_name = "product/detail.html"
 
@@ -78,6 +80,7 @@ class ProductDetailSlugView(DetailView):
         except:
             raise Http404("Error")
 
+        # object_viewed_signal.send(instance.__class__, instance=instance, request=request)
         return instance
 
 

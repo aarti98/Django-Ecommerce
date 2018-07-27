@@ -113,7 +113,7 @@ $(document).ready(function(){
             error: function(errorData){
                 $.alert({
                     title: "Oops!",
-                    content: "An error occured",
+                    content: "An error occurred",
                     theme: "modern"
                 })
                 console.log("error");

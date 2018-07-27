@@ -7,7 +7,7 @@ def home_page(request):
     context = {
         "title": "Hello World",
         "content": "Welcome to the homepage",
-        "premium": "Yeah"
+        "premium": "You are logged in!"
     }
     return render(request, "homepage.html", context)
 
@@ -34,8 +34,6 @@ def contact_page(request):
         print(form.cleaned_data)
         if request.is_ajax():
             return JsonResponse({"message": 'Thank you for your submission!'})
-
-
 
     if form.errors:
         errors = form.errors.as_json()

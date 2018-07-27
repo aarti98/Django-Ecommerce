@@ -7,6 +7,7 @@ from addresses.views import checkout_address_create_view, checkout_address_reuse
 from accounts.views import LoginView, RegisterView, guest_register_view
 from .views import home_page, about_page, contact_page
 from carts.views import cart_detail_api_view
+from billing.views import payment_method_view, payment_method_createview
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
@@ -21,6 +22,8 @@ urlpatterns = [
     url(r'^logout/$', LogoutView.as_view(), name='logout'),
     url(r'^api/cart/$', cart_detail_api_view, name='api-cart'),
     url(r'^register/$', RegisterView.as_view(), name='register'),
+    url(r'^billing/payment-method/$', payment_method_view, name='payment'),
+    url(r'^billing/payment-method/create/$', payment_method_createview, name='payment-api'),
     url(r'^products/', include("products.urls", namespace='products')),
     url(r'^cart/', include("carts.urls", namespace='cart')),
     url(r'^search/', include("search.urls", namespace='search')),
