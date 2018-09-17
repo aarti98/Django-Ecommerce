@@ -80,8 +80,6 @@ class User(AbstractBaseUser):
         return self.active
 
 
-
-
 class GuestEmail(models.Model):
     email = models.EmailField()
     active = models.BooleanField(default=True)
