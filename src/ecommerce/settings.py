@@ -13,7 +13,7 @@ SECRET_KEY = 'ne&e&w3uo&k(0^a+t2&4k=0z*j-q5^7md+una8-bt56@om__!y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['aarti.jaipreet.in']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
